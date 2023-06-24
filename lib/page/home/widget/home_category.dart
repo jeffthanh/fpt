@@ -46,7 +46,12 @@ class _HomeCategoryState extends State<HomeCategory> {
               },
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/category', arguments: {
+                      'id': categoryData[index].id,
+                      'name': categoryData[index].name,
+                    });
+                  },
                   child: Column(
                     children: [
                       Container(
