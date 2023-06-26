@@ -42,7 +42,13 @@ class _CategoryBodyState extends State<CategoryBody> {
             itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/product',
+                    arguments: {"data": data[index]},
+                  );
+                },
                 child: GridTile(
                   footer: ClipRRect(
                     borderRadius: const BorderRadius.vertical(
