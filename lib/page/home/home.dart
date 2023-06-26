@@ -3,6 +3,8 @@ import 'package:fpt/page/home/widget/home_category.dart';
 import 'package:fpt/page/home/widget/home_drawer.dart';
 import 'package:fpt/page/home/widget/home_slider.dart';
 
+import '../product/widget/list_product_special.dart';
+
 class HomePage extends StatelessWidget {
   static const routerName = '/';
   const HomePage({super.key});
@@ -23,7 +25,44 @@ class HomePage extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Danh mục sản phẩm',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'Tất cả {4}',
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
           HomeCategory(),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Sản phẩm đặc biệt',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'Tất cả {4}',
+                ),
+              ],
+            ),
+          ),
+          ListProductSpecial(),
         ],
       ),
     );
