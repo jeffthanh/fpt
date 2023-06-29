@@ -17,7 +17,18 @@ class HomePage extends StatelessWidget {
         child: DrawerScreen(),
       ),
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Trang Chủ"),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.pushNamed(context, '/cart');
+              },
+            ),
+          ),
+        ],
       ),
       body: const Column(
         children: [

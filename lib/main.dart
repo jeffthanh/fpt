@@ -3,9 +3,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fpt/page/auth/splash_screen.dart';
 import 'package:fpt/page/auth/widget/auth_manager.dart';
 import 'package:fpt/page/auth/widget/auth_screen.dart';
+import 'package:fpt/page/cart/cart.dart';
 import 'package:fpt/page/category/category.dart';
 import 'package:fpt/page/home/home.dart';
 import 'package:fpt/providers/category_provider.dart';
+import 'package:fpt/providers/product_provider.dart';
 import 'package:fpt/providers/slider_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +25,9 @@ void main() async {
       ),
       ChangeNotifierProvider(
         create: (_) => CategoryProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => ProductProvider(),
       ),
     ],
     child: Consumer<AuthManager>(
@@ -43,6 +48,7 @@ void main() async {
             CategoryPage.routerName: (context) => const CategoryPage(),
             ProductPage.routerName: (context) => const ProductPage(),
             AuthScreen.routerName: (context) => const AuthScreen(),
+            CartPage.routerName: (context) => const CartPage(),
           },
         );
       },
