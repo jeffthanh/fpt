@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/cart_provider.dart';
 
 class ProductPage extends StatefulWidget {
   static const routerName = '/product';
@@ -9,9 +12,13 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  int _quantity = 1;
+
   @override
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as Map;
+    final cartProvider = Provider.of<CartProvider>(context);
+
     final product = data['data'];
     return Scaffold(
       body: CustomScrollView(
@@ -46,7 +53,13 @@ class _ProductPageState extends State<ProductPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          if (_quantity > 1) {
+                            _quantity--;
+                          }
+                        });
+                      },
                       child: const Icon(
                         Icons.remove,
                       ),
@@ -54,16 +67,20 @@ class _ProductPageState extends State<ProductPage> {
                     const SizedBox(
                       width: 30,
                     ),
-                    const Text('1'),
+                    Text('$_quantity'),
                     const SizedBox(
                       width: 30,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          _quantity++;
+                        });
+                      },
                       child: const Icon(Icons.add),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -76,10 +93,18 @@ class _ProductPageState extends State<ProductPage> {
             width: double.infinity,
             child: ElevatedButton(
               child: const Text('Add Product'),
-              onPressed: () {},
+              onPressed: () {
+                cartProvider.addCart(
+                  product.id,
+                  product.image,
+                  product.name,
+                  product.price,
+                  _quantity,
+                );
+              },
             ),
           ),
-        )
+        ),
       ],
     );
   }
