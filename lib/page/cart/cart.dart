@@ -9,9 +9,20 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itemsData = Provider.of<CartProvider>(context).items;
+    final totalPrice = Provider.of<CartProvider>(context).calculateTotalPrice();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Trang Giỏ Hàng'),
+        title: const Text(
+          'Trang Giỏ Hàng',
+          style: TextStyle(fontSize: 18),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 0, top: 20),
+            child: Text('$totalPrice VNĐ'),
+          )
+        ],
       ),
       body: itemsData.isEmpty
           ? const Center(

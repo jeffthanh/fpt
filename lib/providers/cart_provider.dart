@@ -78,4 +78,12 @@ class CartProvider extends ChangeNotifier {
     items = {};
     notifyListeners();
   }
+
+  double calculateTotalPrice() {
+    double total = 0;
+    for (var item in items.values) {
+      total += item.price * item.quatity;
+    }
+    return total;
+  }
 }
