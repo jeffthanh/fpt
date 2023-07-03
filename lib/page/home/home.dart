@@ -1,7 +1,10 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:fpt/page/home/widget/home_category.dart';
 import 'package:fpt/page/home/widget/home_drawer.dart';
 import 'package:fpt/page/home/widget/home_slider.dart';
+import 'package:fpt/providers/cart_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../product/widget/list_product_special.dart';
 
@@ -20,11 +23,19 @@ class HomePage extends StatelessWidget {
         title: const Text("Trang Chủ"),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-              icon: const Icon(Icons.shopping_cart),
-              onPressed: () {
-                Navigator.pushNamed(context, '/cart');
+            padding: const EdgeInsets.only(right: 15, top: 10),
+            child: Consumer<CartProvider>(
+              builder: (context, value, child) {
+                return badges.Badge(
+                  badgeContent: Text('${value.items.length}'),
+                  position: badges.BadgePosition.topEnd(top: 0, end: 0),
+                  child: IconButton(
+                    icon: const Icon(Icons.shopping_cart),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/cart');
+                    },
+                  ),
+                );
               },
             ),
           ),
@@ -59,7 +70,7 @@ class HomePage extends StatelessWidget {
             height: 20,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -68,10 +79,13 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'Tất cả {4}',
+                  'Tất cả {7}',
                 ),
               ],
             ),
+          ),
+          SizedBox(
+            height: 20,
           ),
           ListProductSpecial(),
         ],

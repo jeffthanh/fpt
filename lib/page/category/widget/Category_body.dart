@@ -3,6 +3,7 @@ import 'package:fpt/providers/category_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/product_model.dart';
+import '../../../providers/cart_provider.dart';
 
 class CategoryBody extends StatefulWidget {
   const CategoryBody({Key? key}) : super(key: key);
@@ -66,7 +67,14 @@ class _CategoryBodyState extends State<CategoryBody> {
                           ),
                         ],
                       ),
-                      trailing: const Icon(Icons.shopping_cart),
+                      trailing: InkWell(
+                        onTap: () {
+                          Provider.of<CartProvider>(context, listen: false)
+                              .addCart(data[index].id!, data[index].image,
+                                  data[index].name, data[index].price, 1);
+                        },
+                        child: const Icon(Icons.shopping_cart),
+                      ),
                     ),
                   ),
                   child: Container(

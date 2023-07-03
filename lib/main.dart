@@ -6,6 +6,7 @@ import 'package:fpt/page/auth/widget/auth_screen.dart';
 import 'package:fpt/page/cart/cart.dart';
 import 'package:fpt/page/category/category.dart';
 import 'package:fpt/page/home/home.dart';
+import 'package:fpt/providers/cart_provider.dart';
 import 'package:fpt/providers/category_provider.dart';
 import 'package:fpt/providers/product_provider.dart';
 import 'package:fpt/providers/slider_provider.dart';
@@ -28,6 +29,9 @@ void main() async {
       ),
       ChangeNotifierProvider(
         create: (_) => ProductProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => CartProvider(),
       ),
     ],
     child: Consumer<AuthManager>(
